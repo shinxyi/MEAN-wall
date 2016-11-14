@@ -1,0 +1,21 @@
+{
+  "name": "basic_mongoose_app",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "ShinYi Tan <shinxyi.tan@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.5.3",
+    "angular-cookies": "^1.5.8"
+  }
+}

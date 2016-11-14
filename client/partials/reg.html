@@ -1,0 +1,19 @@
+<a href="#/login">Login</a> |
+<a href="#/registration">Register!</a>
+<h1>Register</h1>
+
+<div ng-if="errors">
+  <ul>
+    <li ng-repeat="err in errors">{{ err }}</li>
+  </ul>
+</div>
+
+<form ng-submit= 'reg()'>
+  Email: <input type='email' ng-model='info.email' />
+  First Name: <input type='text' ng-model='info.fname' />
+  Last Name: <input type='text' ng-model='info.lname' />
+  Password:<input type='password' ng-model='info.password' />
+  Confirm Password: <input type='password' ng-model='info.password2' />
+  Birthday: <input type='date' ng-model='info.bday' />
+  <button type='submit' class="btn btn-default">Register!</button>
+</form>

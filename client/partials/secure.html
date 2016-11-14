@@ -1,0 +1,13 @@
+<a ng-click="logout()">Logout</a> | <a href ="#/success">Go Home</a>
+
+<h1>Access Secret Info</h1>
+<div ng-if="errors">
+  <ul>
+    <li ng-repeat="err in errors">{{ err }}</li>
+  </ul>
+</div>
+
+<form ng-submit= 'unlock()'>
+  Password:<input type='password' ng-model='info.password' />
+  <button type='submit' class="btn btn-default">Unlock!</button>
+</form>
