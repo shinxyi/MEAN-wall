@@ -10,16 +10,8 @@ app.config(function ($routeProvider) {
       templateUrl: '../partials/reg.html',
       controller: 'newController'
     })
-    .when('/success',{
+    .when('/wall',{
       templateUrl: '../partials/success.html',
-      controller: 'acctController'
-    })
-    .when('/secure',{
-      templateUrl: '../partials/secure.html',
-      controller: 'acctController'
-    })
-    .when('/secret',{
-      templateUrl: '../partials/secret.html',
       controller: 'acctController'
     })
     .otherwise({

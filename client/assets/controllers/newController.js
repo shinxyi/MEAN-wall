@@ -1,18 +1,19 @@
 app.controller('newController', ['$scope','usersFactory', '$location', '$cookies', function($scope, usersFactory, $location, $cookies) {
 
   console.log('CHECKING COOKIES vvv')
-  console.log($cookies.get('user'));
+  console.log(typeof $cookies.get('user'));
 
-  if($cookies.get('user')){
-    $location.url('/success');
-  }
+  // if($cookies.get('user')){
+  //   $location.url('/wall');
+  // }
 
   $scope.reg = function(){
+    console.log($scope.info);
     usersFactory.create($scope.info, function(returnedData){
       if(returnedData.errors){
         $scope.errors = returnedData.errors;
       }else{
-        $location.url('/success');
+        $location.url('/wall');
       }
     })
   };
@@ -22,7 +23,7 @@ app.controller('newController', ['$scope','usersFactory', '$location', '$cookies
       if(returnedData.errors){
         $scope.errors = returnedData.errors;
       }else{
-        $location.url('/success');
+        $location.url('/wall');
       }
     })
   };

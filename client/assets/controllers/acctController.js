@@ -1,18 +1,14 @@
 app.controller('acctController', ['$scope','usersFactory', '$location', '$cookies', function($scope, usersFactory, $location, $cookies) {
-  console.log('CHECKING COOKIES vvv')
+  console.log('CHECKING COOKIES !!!-')
   console.log($cookies.get('user'));
 
-  if(!($cookies.get('user'))){
+  if(!($cookies.get('user'))) {
     $location.url('/login');
   }
-
-  if(!($cookies.get('access')) && (window.location.href.indexOf("secret") > -1)){
-    $location.url('/secure');
-  }
-
-  usersFactory.getUser(function(returnedData){
-    $scope.user = returnedData;
-  })
+  //
+  // if(!($cookies.get('access')) && (window.location.href.indexOf("secret") > -1)){
+  //   $location.url('/secure');
+  // }
 
   $scope.logout = function(){
     usersFactory.logout();

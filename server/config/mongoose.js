@@ -9,7 +9,7 @@ var mongoose      = require('mongoose'),
 /*Regular expression that checks for .js extension*/
     reg           = new RegExp( ".js$", "i" ),
 /*database information*/
-    dbURI         = 'mongodb://localhost/login_reg';
+    dbURI         = 'mongodb://localhost/MEANwall';
 /*Connect to the database*/
 mongoose.connect( dbURI );
 

@@ -3,16 +3,6 @@ var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt');
 
 var userSchema = new mongoose.Schema({
- bday: {
-        type: Date,
-        required: [true, "Birthday is Required!"],
-        validate: {
-          validator: function (value){
-            return new Date(value) <  new Date();
-          },
-          message: "You must be at least one day old!"
-        }
- },
  email: {
         type: String,
         required: [true, "Email is Required!"],
@@ -24,15 +14,18 @@ var userSchema = new mongoose.Schema({
           message: "Email is not in the proper format: example@example.com"
         }
       },
- fname: {
+ username: {
            type: String,
-           required: [true, "First Name is Required!"],
-           trim: true
-         },
- lname: {
-           type: String,
-           required: [true, "Last Name is Required!"],
-           trim: true
+           unique: [true, "Username is already taken!"], //apparently queries to mongodb is case sensitive
+           maxlength: [20, "Your username may not be longer than 20 characters!"],
+           required: [true, "Username is Required!"],
+           trim: true,
+           validate: {
+             validator: function( value ) {
+               return /^[a-zA-Z0-9_]*$/.test( value );
+             },
+             message: "Username can only contain alphanumeric characters and underscores."
+           }
          },
  password: {
         type: String,
