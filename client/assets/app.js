@@ -4,15 +4,15 @@ app.config(function ($routeProvider) {
   $routeProvider
     .when('/login', {
       templateUrl: '../partials/login.html',
-      controller: 'newController'
+      controller: 'acctController'
     })
     .when('/registration',{
       templateUrl: '../partials/reg.html',
-      controller: 'newController'
+      controller: 'acctController'
     })
     .when('/wall',{
       templateUrl: '../partials/success.html',
-      controller: 'acctController'
+      controller: 'wallController'
     })
     .otherwise({
       redirectTo: '/login'

@@ -1,37 +1,31 @@
 app.controller('acctController', ['$scope','usersFactory', '$location', '$cookies', function($scope, usersFactory, $location, $cookies) {
-  console.log('CHECKING COOKIES !!!-')
-  console.log($cookies.get('user'));
 
-  if(!($cookies.get('user'))) {
-    $location.url('/login');
-  }
-  //
-  // if(!($cookies.get('access')) && (window.location.href.indexOf("secret") > -1)){
-  //   $location.url('/secure');
+  console.log('CHECKING COOKIES vvv')
+  console.log(typeof $cookies.get('user'));
+
+  // if($cookies.get('user')){
+  //   $location.url('/wall');
   // }
 
-  $scope.logout = function(){
-    usersFactory.logout();
-    $location.url('/login');
-  }
-
-  $scope.unlock = function(){
-
-    $scope.info.email = $scope.user.email;
-
-    usersFactory.login($scope.info, function(returnedData){
+  $scope.reg = function(){
+    console.log($scope.info);
+    usersFactory.create($scope.info, function(returnedData){
       if(returnedData.errors){
         $scope.errors = returnedData.errors;
       }else{
-        $cookies.put('access', true);
-        $location.url('/secret');
+        $location.url('/wall');
       }
     })
   };
 
-  $scope.lock = function(){
-    $cookies.remove('access');
-    $location.url('/success');
-  }
+  $scope.login = function(){
+    usersFactory.login($scope.info, function(returnedData){
+      if(returnedData.errors){
+        $scope.errors = returnedData.errors;
+      }else{
+        $location.url('/wall');
+      }
+    })
+  };
 
 }]);
