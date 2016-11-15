@@ -9,6 +9,8 @@ app.factory('interactionsFactory', ['$http', '$cookies',  function($http, $cooki
     this.message = function(msg, callback){
       if(!msg){
         return callback({errors: 'Message cannot be empty!'})
+      }else if(!msg.text){
+        return callback({errors: 'Message cannot be empty!'})
       }
       console.log('!!!! MADE IT TO TRYING TO CREATE MSG IN interxionFactory')
       console.log(msg);
