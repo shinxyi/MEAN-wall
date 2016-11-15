@@ -19,7 +19,7 @@ app.factory('usersFactory', ['$http', '$cookies',  function($http, $cookies) {
         $http.post('/reg', user).then(function(returned_data){
           var expireDate = new Date();
           expireDate.setDate(expireDate.getDate() + 1);
-          $cookies.put('user', true , {'expires': expireDate});
+          $cookies.put('user', returned_data.data.username , {'expires': expireDate});
           callback(returned_data.data);
         })
       }
@@ -30,9 +30,10 @@ app.factory('usersFactory', ['$http', '$cookies',  function($http, $cookies) {
         callback({errors: ['Fields cannot be empty!']});
       }else{
         $http.post('/login', user).then(function(returned_data){
+          console.log('!!!', returned_data.data.username);
           var expireDate = new Date();
           expireDate.setDate(expireDate.getDate() + 1);
-          $cookies.put('user', true , {'expires': expireDate});
+          $cookies.put('user', returned_data.data.username, {'expires': expireDate});
           callback(returned_data.data);
         });
       }

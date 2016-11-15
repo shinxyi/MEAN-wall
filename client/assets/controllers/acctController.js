@@ -3,9 +3,9 @@ app.controller('acctController', ['$scope','usersFactory', '$location', '$cookie
   console.log('CHECKING COOKIES vvv')
   console.log(typeof $cookies.get('user'));
 
-  // if($cookies.get('user')){
-  //   $location.url('/wall');
-  // }
+  if($cookies.get('user')){
+    $location.url('/wall');
+  }
 
   $scope.reg = function(){
     console.log($scope.info);
