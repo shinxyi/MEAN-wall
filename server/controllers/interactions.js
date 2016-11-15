@@ -35,19 +35,23 @@ function InteractionsController(){
 
   this.comment= function(req,res){
     Post.findOne({_id: req.params.postId}, function(err, post){
-      var comment = new Comment({text: req.body.text, username:req.session.user.username});
-      comment._post = req.params.postId;
+      if(err){
+        res.json({errors: "Post message not found."});
+      }else{
+        var comment = new Comment({text: req.body.text, username:req.session.user.username});
+        comment._post = req.params.postId;
 
-      comment.save(function(err){
-        post.comments.push(comment);
-        post.save(function(err){
-          if(err){
-            res.json({errors: "Failed to save comment to DB"});
-          }else{
-            res.json(comment);
-          }
+        comment.save(function(err){
+          post.comments.push(comment);
+          post.save(function(err){
+            if(err){
+              res.json({errors: "Failed to save comment to DB"});
+            }else{
+              res.json(comment);
+            }
+          })
         })
-      })
+      }
     })
   };
 
