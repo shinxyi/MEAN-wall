@@ -7,6 +7,9 @@ app.factory('interactionsFactory', ['$http', '$cookies',  function($http, $cooki
     var _this = this;
 
     this.message = function(msg, callback){
+      if(!msg){
+        return callback({errors: 'Message cannot be empty!'})
+      }
       console.log('!!!! MADE IT TO TRYING TO CREATE MSG IN interxionFactory')
       console.log(msg);
       $http.post('/postMsg', msg).then(function(returned_data){
@@ -14,7 +17,10 @@ app.factory('interactionsFactory', ['$http', '$cookies',  function($http, $cooki
       })
     };
 
-    this.addComment = function(oneComment, postId, callback){
+    this.addComment = function(postId, oneComment, callback){
+      if(!oneComment.text){
+        return callback({errors: 'Comment cannot be empty!'})
+      }
       console.log('!!! TRYING TO POST COMMENT IN INTERX FACTORY');
       console.log(oneComment);
       $http.post('/comment/'+ postId , oneComment).then(function(returned_data){

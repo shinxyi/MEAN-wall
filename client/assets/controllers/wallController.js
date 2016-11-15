@@ -11,7 +11,7 @@ app.controller('wallController', ['$scope','interactionsFactory', 'usersFactory'
   $scope.getWall = function(){
     interactionsFactory.getWall(function(returnedData){
       $scope.posts = returnedData;
-      console.log('GET WALL -----', returnedData)
+      console.log('checking scope-----', $scope.commentText);
     })
   }
 
@@ -27,21 +27,25 @@ app.controller('wallController', ['$scope','interactionsFactory', 'usersFactory'
       if(returnedData.errors){
         $scope.errors = returnedData.errors;
       }else{
-        $scope.getWall();
+        $scope.errors = undefined;
         $scope.postMsg={};
+        $scope.getWall();
       }
     })
   };
 
-  $scope.comment = function(postId){
-    console.log("?????", $scope.oneComment)
+  $scope.comment = function(postId, commentText, index){
+    console.log("?????", commentText);
     console.log(postId);
-    interactionsFactory.addComment($scope.oneComment, postId, function(returnedData){
+    var oneComment = { text: commentText }
+    interactionsFactory.addComment(postId, oneComment, function(returnedData){
       if(returnedData.errors){
-        $scope.errors = returnedData.errors;
+        $scope.errors2 = returnedData.errors;
+        $scope.thisOne = index;
       }else{
+        $scope.errors2 = undefined;
+        // $scope.commentText=undefined;
         $scope.getWall();
-        $scope.oneComment={};
       }
     })
   }
